@@ -11,6 +11,7 @@ public class PlayerController : MonoBehaviour
     [SerializeField] private float movementSpeed;
     [SerializeField] private float airMoveSpeed;
     [SerializeField] private CapsuleCollider2D groundCheck;
+    [SerializeField] private GameObject e;
 
     // Start is called before the first frame update
     void Start()
@@ -29,6 +30,18 @@ public class PlayerController : MonoBehaviour
     {
         JumpControls();
         MovementControls();
+        CombatControls();
+    }
+
+    private void CombatControls()
+    {
+        if (Input.GetKeyDown(KeyCode.E))
+        {
+            Vector3 postition = transform.position;
+            postition.y += 1;
+            postition.x += 1;
+            Instantiate(e, postition, Quaternion.Euler(0, 0, -90));
+        }
     }
 
     private void MovementControls()
